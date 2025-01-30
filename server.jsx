@@ -28,7 +28,7 @@ app.use(cors({
 const JWT_SECRET = "your_jwt_secret_key"; // Store this in an env variable for security
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://contentsimplified4u:content%40123@cluster0.aad41.mongodb.net/hierarchy', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://contentsimplified4u:content%40123@cluster0.aad41.mongodb.net/hierarchy')
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log("MongoDB Connection Error: ", err));
 
