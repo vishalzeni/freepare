@@ -60,7 +60,9 @@ const authenticate = (req, res, next) => {
     res.status(401).json({ success: false, message: "Invalid or expired token" });
   }
 };
-
+app.get('/', (req, res) => {
+  res.send('Server is live');
+});
 app.post('/api/entities', async (req, res) => {
   try {
     const { name, type, parentName, description, testName, videoLink } = req.body;
