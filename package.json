@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.jsx",
   "scripts": {
-    "start": "node server.jsx",
+    "start": "nodemon server.jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
