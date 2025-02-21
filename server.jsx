@@ -714,6 +714,33 @@ app.put("/users/update", authenticate, async (req, res) => {
   }
 });
 
+app.put("/users/add-info", authenticate, async (req, res) => {
+  const { institutionType, class: userClass, institutionName, degreeName, passingYear } = req.body;
+  const userId = req.user.userId; // Extract user ID from the JWT
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update user information
+    user.institutionType = institutionType || user.institutionType;
+    user.class = userClass || user.class;
+    user.institutionName = institutionName || user.institutionName;
+    user.degreeName = degreeName || user.degreeName;
+    user.passingYear = passingYear || user.passingYear;
+
+    await user.save();
+
+    res.status(200).json({ message: "Additional information updated successfully", user });
+  } catch (error) {
+    console.error("Error updating additional information:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
 // Delete user route
 app.delete("/users-data/:id", async (req, res) => {
   const userId = req.params.id; // Capture the user ID from the URL parameter
